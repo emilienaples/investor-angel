@@ -1,0 +1,127 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Stock {
+  id     String   @id @default(auto()) @map("_id") @db.ObjectId  
+  name String
+  imageId String
+  category String  
+  code String? @default("")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("stocks")
+}
+model Form {
+  id     String   @id @default(auto()) @map("_id") @db.ObjectId  
+
+  sessionId String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("forms")
+}
+
+model InvestmentDetail {
+  id     String   @id @default(auto()) @map("_id") @db.ObjectId  
+
+  formId   String?   @unique()
+  purpose  String
+  amount   String
+  duration String
+  monthly String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("investmentDetails")
+}
+
+model InsuranceDetail {
+  id     String   @id @default(auto()) @map("_id") @db.ObjectId  
+
+  formId           String?    @unique()
+  mortgage         Boolean
+  married          Boolean
+  relationShip     String
+  multiMillionaire Boolean
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("insuranceDetails")
+}
+
+model AnnuityDetail {
+  id     String   @id @default(auto()) @map("_id") @db.ObjectId  
+
+  formId         String?    @unique()
+  longevity      String
+  ampleLiquidity String
+  loaded         String
+  fiftyYearsOld  String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("annuityDetails")
+}
+
+model StockDetail {
+  id     String   @id @default(auto()) @map("_id") @db.ObjectId  
+
+  formId      String? 
+  stockId     String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("stockDetails")
+}
+
+
+model DebtDetail {
+  id     String   @id @default(auto()) @map("_id") @db.ObjectId  
+
+  formId         String?    @unique()
+  ccDebt      Int?
+  marginDebt  Int?
+  autoDebt    Int?
+  studentDebt Int?
+  mortgageDebt Int?
+  otherDebt    Int?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("debtDetails")
+}
+
+model RiskDetail {
+  id     String   @id @default(auto()) @map("_id") @db.ObjectId  
+
+  formId         String?    @unique()
+  question1      Int?
+  question2      Int?
+  question3      Int?
+  question4      Int?
+  question5      Int?
+  question6      Int?
+  question7      Int?
+  overallScore      Int?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("riskDetails")
+}

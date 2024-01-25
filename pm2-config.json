@@ -1,0 +1,47 @@
+{
+    "apps": [
+      {
+        "name": "frontend-app",
+        "script": "npm",
+        "args": "run start",
+        "cwd": "/root/finance_product_dev/Frontend", 
+        "watch": true,
+        "ignore_watch": ["node_modules"],
+        "env": {
+          "NODE_ENV": "production"
+        },
+        "env_development": {
+          "NODE_ENV": "development"
+        }
+      },
+      {
+        "name": "admin-app",
+        "script": "npm",
+        "args": "run start",
+        "cwd": "/root/finance_product_dev/Backend", 
+        "watch": true,
+        "ignore_watch": ["node_modules"],
+        "env": {
+          "NODE_ENV": "production"
+        },
+        "env_development": {
+          "NODE_ENV": "development"
+        }
+      },
+      {
+        "name": "backend-server",
+        "script": "npm",
+        "args": "run start:dev",
+        "cwd": "/root/finance_product_dev/server", 
+        "watch": false,
+        "ignore_watch": ["node_modules"],
+        "env": {
+          "NODE_ENV": "production"
+        },
+        "env_development": {
+          "NODE_ENV": "development"
+        }
+      }
+    ]
+  }
+  
